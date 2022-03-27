@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import userReducers from "./Reducers/userReducers";
+import LoginReducer from "./Reducers/LoginReducer";
+import Balance from "./Reducers/Balance";
 
 const reducers = combineReducers({
-  userManagements: userReducers,
+  login: LoginReducer,
+  balance: Balance,
 });
 
 export default reducers;

@@ -1,17 +1,17 @@
-export const Add = (obj) => {
+export const Add = (amount) => {
   return (dispatch) => {
     dispatch({
       type: "add",
-      payload: obj,
+      payload: amount,
     });
   };
 };
 
-export const Remove = (id) => {
+export const Remove = (amount) => {
   return (dispatch) => {
     dispatch({
       type: "remove",
-      payload: id,
+      payload: amount,
     });
   };
 };

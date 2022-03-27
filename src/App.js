@@ -1,45 +1,37 @@
-import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { userActionCreator } from "./Stores/ActionCreator";
+import {
+  loginActionCreators,
+  BalanceActionCreators,
+} from "./Stores/ActionCreators";
 
-function App() {
-  const userRef = useRef();
-  const userData = useSelector((state) => state.userManagements);
+const App = () => {
+  const login = useSelector((state) => state.login);
+  const balance = useSelector((state) => state.balance);
   const dispatch = useDispatch();
-  const { Add, Remove } = bindActionCreators(userActionCreator, dispatch);
+  const { Right, Wrong } = bindActionCreators(loginActionCreators, dispatch);
+  const { Add, Remove } = bindActionCreators(BalanceActionCreators, dispatch);
+
+  const handleMember = () => {
+    Right(true);
+    Add(100);
+  };
+
+  const handleMemberTwo = () => {
+    Wrong(false);
+    Remove(50);
+  };
 
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const id = Math.floor(Math.random() * 1000000) + 1;
-          const user = {
-            id,
-            name: userRef.current.value,
-          };
-          Add(user);
-          userRef.current.value = "";
-          console.log(userData);
-        }}
-      >
-        <input type="text" ref={userRef} />
-        <button type="submit">submit</button>
-      </form>
-
-      <br />
-      <br />
-
-      <div>
-        {userData.map((i) => (
-          <p key={i.id} onClick={() => Remove(i.id)}>
-            {i.name}
-          </p>
-        ))}
-      </div>
+      <h1>{login ? "Member" : "Guest"}</h1>
+      <hr />
+      <h1>AccountBalance:{balance}</h1>
+      <hr />
+      <button onClick={handleMember}>Add</button>
+      <button onClick={handleMemberTwo}>Remove</button>
     </div>
   );
-}
+};
 
 export default App;
