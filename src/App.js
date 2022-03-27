@@ -1,25 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import {
-  loginActionCreators,
-  BalanceActionCreators,
-} from "./Stores/ActionCreators";
+import { Wrong, Right } from "./Stores/Actions/LoginAction";
+import { Add, Remove } from "./Stores/Actions/BalanceAction";
 
 const App = () => {
   const login = useSelector((state) => state.login);
   const balance = useSelector((state) => state.balance);
   const dispatch = useDispatch();
-  const { Right, Wrong } = bindActionCreators(loginActionCreators, dispatch);
-  const { Add, Remove } = bindActionCreators(BalanceActionCreators, dispatch);
 
   const handleMember = () => {
-    Right(true);
-    Add(100);
+    dispatch(Right(true));
+    dispatch(Add(100));
   };
 
   const handleMemberTwo = () => {
-    Wrong(false);
-    Remove(50);
+    dispatch(Wrong(false));
+    dispatch(Remove(50));
   };
 
   return (

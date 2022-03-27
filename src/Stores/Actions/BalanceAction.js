@@ -1,17 +1,20 @@
 export const Add = (amount) => {
-  return (dispatch) => {
-    dispatch({
-      type: "add",
-      payload: amount,
-    });
+  return {
+    type: "add",
+    payload: amount,
   };
 };
 
 export const Remove = (amount) => {
-  return (dispatch) => {
-    dispatch({
-      type: "remove",
-      payload: amount,
-    });
+  return {
+    type: "remove",
+    payload: amount,
   };
 };
+
+const balanceActionCreator = {
+  Add,
+  Remove,
+};
+
+export default balanceActionCreator;
