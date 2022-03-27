@@ -1,14 +1,13 @@
 import { combineReducers } from "redux";
-import LoginReducer from "./Reducers/LoginReducer";
-import Balance from "./Reducers/Balance";
-import { applyMiddleware, createStore } from "redux";
+import balanceReducer from "./Reducer/BalanceReducer";
+import { createStore } from "redux";
+import { applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-const reducers = combineReducers({
-  login: LoginReducer,
-  balance: Balance,
+const Reducers = combineReducers({
+  balance: balanceReducer,
 });
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+const stores = createStore(Reducers, {}, applyMiddleware(thunk));
 
-export default store;
+export default stores;

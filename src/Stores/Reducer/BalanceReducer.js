@@ -1,4 +1,4 @@
-const Balance = (state = 0, { type, payload }) => {
+const balanceReducer = (state = 0, { type, payload }) => {
   switch (type) {
     case "add":
       return state + payload;
@@ -9,4 +9,4 @@ const Balance = (state = 0, { type, payload }) => {
   }
 };
 
-export default Balance;
+export default balanceReducer;

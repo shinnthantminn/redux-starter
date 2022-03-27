@@ -11,10 +11,3 @@ export const Remove = (amount) => {
     payload: amount,
   };
 };
-
-const balanceActionCreator = {
-  Add,
-  Remove,
-};
-
-export default balanceActionCreator;
