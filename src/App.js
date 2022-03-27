@@ -1,18 +1,43 @@
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { accountActionCreators } from "./Stores/actionCreators";
+import { userActionCreator } from "./Stores/ActionCreator";
 
 function App() {
-  const balance = useSelector((state) => state.accountBalance);
+  const userRef = useRef();
+  const userData = useSelector((state) => state.userManagements);
   const dispatch = useDispatch();
-  const { Add, Remove } = bindActionCreators(accountActionCreators, dispatch);
+  const { Add, Remove } = bindActionCreators(userActionCreator, dispatch);
 
   return (
     <div>
-      <h1>account Balance Result</h1>
-      <p>result : {balance}</p>
-      <button onClick={(_) => Add(50)}>Add</button>
-      <button onClick={(_) => Remove(50)}>Remove</button>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const id = Math.floor(Math.random() * 1000000) + 1;
+          const user = {
+            id,
+            name: userRef.current.value,
+          };
+          Add(user);
+          userRef.current.value = "";
+          console.log(userData);
+        }}
+      >
+        <input type="text" ref={userRef} />
+        <button type="submit">submit</button>
+      </form>
+
+      <br />
+      <br />
+
+      <div>
+        {userData.map((i) => (
+          <p key={i.id} onClick={() => Remove(i.id)}>
+            {i.name}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }
