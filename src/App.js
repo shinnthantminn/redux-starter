@@ -1,28 +1,21 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Add, Remove } from "./Stores/Actions/BalanceActions";
+import styled from "styled-components";
+import Form from "./Components/Form";
+import User from "./Components/User";
 
-function App() {
-  const balance = useSelector((state) => state.balance);
-  const dispatch = useDispatch();
+const Container = styled.div`
+  width: 300px;
+  height: 100%;
+  margin: 0 auto;
+`;
+
+const App = () => {
   return (
-    <div>
-      <h1>Account:{balance}</h1>
-      <button
-        onClick={() => {
-          dispatch(Add(50));
-        }}
-      >
-        Add
-      </button>
-      <button
-        onClick={() => {
-          dispatch(Remove(50));
-        }}
-      >
-        Remove
-      </button>
-    </div>
+    <Container>
+      <h1>Todo App</h1>
+      <Form />
+      <User />
+    </Container>
   );
-}
+};
 
 export default App;
